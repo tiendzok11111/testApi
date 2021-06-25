@@ -9,7 +9,7 @@ function request() {
     let xhttp = new XMLHttpRequest;
     xhttp.onload = function () {
         let x = JSON.parse(this.responseText)
-        Render(x)
+            Render(x)
     }
     xhttp.open('GET', "https://60cc3ad771b73400171f742d.mockapi.io/api/v2/user")
     xhttp.send()
