@@ -1,0 +1,135 @@
+.carousel {
+  color: #32325d;
+
+  --carousel-button-bg: #fff;
+  --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%),
+    0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+
+  --carousel-button-svg-width: 20px;
+  --carousel-button-svg-height: 20px;
+
+  --carousel-button-svg-stroke-width: 2.5;
+
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.carousel__button {
+  z-index: 2;
+  box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
+    0 3px 7px -3px rgb(0 0 0 / 30%);
+}
+
+.carousel__button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #A78BFA;
+}
+
+.carousel__button.is-prev {
+  left: -1.5rem;
+}
+
+.carousel__button.is-next {
+  right: -1.5rem;
+}
+
+.carousel__viewport {
+  width: calc(55% + 120px);
+  margin-left: auto;
+}
+
+.carousel__slide {
+  width: 100%;
+  padding: 60px 60px 60px 160px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel__image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 55%;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.carousel__image-container ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background: currentColor;
+}
+
+.carousel__image-container li {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.35s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px 0 50px;
+
+  user-select: none;
+}
+
+.carousel__image-container li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: currentColor;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.carousel__image-container li.is-active {
+  opacity: 1;
+}
+
+.carousel__image-container li h3 {
+  color: #fff;
+  z-index: 1;
+}
+
+.carousel__image-container li img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 960px) {
+  .carousel__image-container ul {
+    transform: translateX(-60px) skewX(-12deg);
+  }
+
+  .carousel__image-container li {
+    transform: translateX(60px) skewX(12deg);
+    padding-right: 100px;
+  }
+}
+
+#logoBar a {
+  opacity: 0.3;
+  user-select: none;
+}
+
+#logoBar a.is-active {
+  opacity: 1;
+}

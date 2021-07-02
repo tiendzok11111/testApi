@@ -1,59 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content ="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
     <title>Document</title>
 </head>
 <style>
-    label {
-        margin-top: 20px;
+    * {
+        margin: 0;
+        padding: 0;
+        font-family:"Open Sans", sans-serif;
+
     }
+    a {
+        text-decoration: none;
+    }
+    body {
+        background-image:  linear-gradient(to left, #dfe6fc0e , #EDE3FC );
+        width: 100%;
+    }
+    .container {
+        
+    }
+    header {
+    }
+    .navbar__fixed {
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+        transition: .8 ease;
+    }
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px  207px ;
+        transition: .4s ease;
+    }
+    .navbar .navbar-brand img {
+        width: 110px;
+    }
+    .navbar-menu {
+
+    }
+    .navbar-menu .navbar-links {
+
+
+    }
+    .navbar-menu .navbar-links .link {
+        display: inline-block;
+        list-style: none;
+    }
+    .navbar-menu .navbar-links .link a {  
+        text-decoration: none; 
+        margin-left: 24px;
+        color: rgb(68,75,134);
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: .4s ease;
+
+    }
+    .navbar-menu .navbar-links a:hover {
+        color: #FF9549;
+    }
+    .navbar-menu .navbar-links .link:nth-child(1) a {
+        color: #FF9549;
+    }
+    .navbar-menu .navbar-links .link:nth-child(6) a {
+        padding: 8px 24px;
+        border-radius: 70px;
+        background-color: #1E266D;
+        color: white;
+        transition: .4s ease;
+        border-color:rgb(68,75,134);
+        border: 1px solid;
+
+    }
+    .navbar-menu .navbar-links .link:nth-child(6):hover a {
+        color: #1E266D;
+        background-color: #fff;
+        border-color:rgb(68,75,134);
+    }
+    .show-linkss {
+        width: 200px;
+        height: 200px;
+        border: 1px solid rgb(22, 21, 21);
+        box-shadow: 2px 2px 10px rgb(148, 145, 145);
+        position: absolute;
+        top: 80px;
+        border-radius: 5px;
+        transition: 1s ease;
+        display: none;
+    }
+     .show-linkss::after {
+         content: " ";
+         position: absolute;
+         top: -100px;
+         left: -30px;
+         border-top: 70px solid ;
+         border-bottom: 70px solid ;
+         border-right: 70px solid ;
+         border-left: 70px solid ;
+         border-color: transparent transparent transparent transparent;
+     }
+    .navbar-menu .navbar-links .link:nth-child(5):hover .show-linkss {
+        display: block;
+    }
+    .show-linkss li {
+        display: block;
+        list-style: none;
+    }
+    .show-linkss a {
+        width: 80%;
+        border-bottom: 1px solid rgba(73, 71, 71, 0.418);
+        padding: 20px 0;
+        display: inline-block;
+     
+    }
+    section {
+        position: relative;
+        top: 170px;
+        left: 0;
+
+    }
+    .fake {
+        padding: 0 100px 0 207px;
+
+    }
+    .content-top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .content__top-left {
+        padding-top: 120px
+     
+    }
+    .content__sign {
+
+    }
+    .content__heading {
+        font-size: 44px;
+        color: #1E266D;
+        letter-spacing: 2px;
+        line-height: 60px;
+
+
+    }
+    .content__des {
+        display: inline-block;
+        font-size: 18px;
+        color: #515867;
+        line-height: 30px;
+        margin: 45px 0;
+        letter-spacing: 1px;
+
+    }
+    .content__btn {
+        display: flex;
+        flex-direction: row;
+
+    }
+    .content__btn-sign {
+        width: 200px;
+        text-align: center;
+        line-height: 60px;
+        border-radius: 45px;
+        background-color: #FF6C02;
+        color: white;
+        font-weight: 600;
+        margin-right: 10px;
+        font-size: 0.9rem;
+        transition: .4s ease;
+    } 
+    .content__btn-sign:hover {
+        background-color: #fff;
+        border: 1px solid #FF6C02;
+        color: #FF6C02;
+    }
+    .content__btn-dis  {
+        padding: 18px 42px;
+        border: 1px solid #FF6C02;
+        border-radius: 45px;
+        color: #FF6C02;
+        transition: .4s ease;
+    } 
+    .content__btn-dis:hover {
+        background-color: #FF6C02;
+        color: white;
+    }
+    .content__top-right {
+    } 
+
+    .content__main {
+
+    }
+    .content__main-title {
+        width: 1110px;
+        margin-top: 229px;
+        padding-bottom: 32px;
+        text-align: center;
+        border-bottom:1px solid #31333625;
+        font-size: 22px;
+    }
+    .content__brand {
+        padding-top: 32px;
+    }
+    .cunstomer {
+        float: left;
+        margin-right: 80px;
+    }
+    .cunstomer img {
+    }
+
+    .content__introduct {
+        margin-top: 160px;
+        display: flex;
+    }
+    .content__introduct-img img {
+        margin-right: 108px;
+    }
+    .content__introduct h2 {
+        color: #1E266D;
+        font-size: 32px;
+        letter-spacing: 1px;
+        line-height: 40px;
+
+    }
+    .content__introduct span {
+        display: block;
+        letter-spacing: 1px;
+        color: #515867;
+        margin: 50px 0px;
+        line-height: 27px;
+    }
+    .content__introduct a {
+        display: inline-block;
+        padding: 17px 40px;
+        background-color: #FF6C02;
+        border-radius: 100px;
+        border: 1px solid;
+        transition: .4s ease;
+        color: white
+
+    }
+    .content__introduct a:hover {
+        background-color: #fff;
+        color: #FF6C02;
+    }
+
+
+
+
+    .content__products {
+        margin-top: 273px;
+        height: 800px;
+        background-color: #040470;
+    }
+    .content__products-title h2 {
+        text-align: center;
+        padding: 161px 0 75px 0;
+        color: white;
+        font-size: 32px;
+    }
+    .content__products-title span {
+        display: block;
+        color: #B8B8D6;
+        font-size: 16px;
+        text-align: center;
+    }
+    .card {
+        margin-top: 70px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .card .content__products-card {
+        
+        padding: 0 38px;
+        position: relative;
+    }
+    .card .content__products-card::after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: .5px;
+        height: 81px;
+        background-color: #FF6C02;
+
+    }
+    .card .content__products-card .headphone {
+        color: #FF6C02;
+        width: 80px;
+        height: 80px;
+        font-size: 30px;
+        border-radius: 50px;
+        background-color: #3232A0;
+        text-align: center;
+        line-height: 80px;
+
+    }
+    .card .content__products-card .title {
+        letter-spacing: 1px;
+        color: white;
+        font-size: 20px;
+
+    }
+    .card .content__products-card .des {
+        color: white;
+        padding: 33px 0;
+        line-height: 27px;
+
+    }
+    .learn-btn a,
+    .learn-btn i {
+        color: white;
+    }
+    .learn-btn i {
+        font-size: 15px;
+        margin-left: 10px;
+    }
+    .main__step-title {
+        padding: 158px 0;
+    }
+     .main__step-title span,
+     .step-content span {
+         display: block;
+         color: #3232A0;
+         font-size: 32px;
+         font-weight: 600;
+         letter-spacing: 1px;
+       
+     }
+     .main__step-title p,
+     .step-content p  {
+         margin-top: 42px;
+         line-height: 26px;
+         letter-spacing: 1px;
+        color: #775867;
+     }
+     .main__step-step {
+         display: flex;
+         margin-bottom: 200px;
+     }
+     .step-content {
+         padding: 114px 0 0 142px;
+     }
+     .step-content button{
+         background-color: #FFF0E2;
+         color: #FF6C02;
+         border-radius: 70px;
+         padding: 7px 20px;
+         text-align: center;
+         font-weight: 600;
+         border: none;
+         margin-bottom: 22px;
+     }
+     .step-content a {
+          display: inline-block;
+        padding: 14px 30px;
+        background-color: #FF6C02;
+        border-radius: 100px;
+        border: 1px solid;
+        transition: .4s ease;
+        color: white;
+         margin-top: 42px;
+        transition: .4s ease;
+     }
+     .step-content a:hover {
+         background-color: white;
+         color: #FF6C02;
+         border-color: #FF6C02;
+     }
+     .step-content p  {
+     }
+     .footer {
+         display: flex;
+         justify-content: space-between;
+         background-color: #F9F9F9;
+         padding: 100px 200px;
+     }
+     .footer span {
+         display: inline-block;
+         font-weight: 600;
+         margin-bottom: 25px;
+         font-size: 18px;
+     }
+     .footer p {
+         font-size: 16px;
+         line-height: 27px;
+     }
+     .contact .links {
+         display: flex;
+     }
+     .contact .link {
+         border-radius: 100px;
+         width: 50px;
+         height: 50px;
+         transition: .6s ease;
+         margin-right: 10px;
+         text-align: center;
+         line-height: 50px;
+         font-size: 26px;
+     }
+     .contact .link:hover {
+         background-color: #775867;
+         color: white;
+     }
 </style>
-
 <body>
-<div class="row">
-    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-        <table class="table ta  ble-condensed table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CREATEDAT</th>
-                    <th>NAME</th>
-                    <th>AVATAR</th>
-                </tr>
-            </thead>
-            <tbody>
+<div class="container">
+    <!-- ************HEADER************************************************************************* -->
+    <header >
+        <div id="home" class="navbar">
+            <div class="navbar-brand">
+                <img src="https://inovatik.com/kora/images/logo.svg" alt="">
+            </div>
+            <div class="navbar-menu">
+                <ul class="navbar-links">
+                    <li class="link"><a href="">Home</a></li>
+                    <li class="link"><a href="">Intro</a></li>
+                    <li class="link"><a href="">Features</a></li>
+                    <li class="link"><a href="">Details</a></li>
+                    <li class="link"><a href="">Contact</a></li>
+                    <li class="link"><a href="">Drop
+                        </a>
+                        <ul class="show-linkss">
+                            <li><a href="">Link Shopping</a></li>
+                            <li><a href="">Link Shopping</a></li>
+                            <li><a href="">Link Shopping</a></li>
+                        </ul>
+                    </li>
+                    <li class="link"><a href="">Start selling</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- ************SECTION************************************************************************* -->
 
-            </tbody>
-        </table>
-    </div>
-
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <form action="">
-                <div class="panel-body">
-                    <label for="">CREATEDAT</label>
-                    <input type="tel" id="create" class="form-control" placeholder="">
-                    <label for="">NAME</label>
-                    <input type="tel" id="name" class="form-control">
-                    <label for="">AVATAR</label>
-                    <input type="tel" id="avatar" class="form-control">
-                    <div class="btn-sumit">
-                        <button type="button" class="btn btn-info mt-5">CREATUSER</button>
+    <section>
+        <div class="fake">
+            <div id="intro" class="content-top">
+                <div class="content__top-left">
+                    <div class="content__sign">
+                        <h1 class="content__heading">
+                            Now is the time<br> to start selling <br> things online
+                        </h1>
+                        <span class="content__des">
+                            Kora is a leading online shop creation platform<br> which offers amazing features for ecommerce
+                        </span>
+                    </div>
+                    <div class="content__btn">
+                        <a href="" class="content__btn-sign">Sign up for free</a>
+                        <a href="" class="content__btn-dis">Discover</a>
+            
                     </div>
                 </div>
-        </form>
-    </div>
+                <div class="content__top-right">
+                    <img src="./img/header.png" alt="">
+                </div>
+            </div>
+            
+            <!-- ************CONTENT MAIN************************************************************************* -->
+            
+            <div class="content__main">
+                <div class="content__main-title">
+                    <h3>Brands and shops that use Kora to grow their business</h3>
+                </div>
+                <div class="content__brand">
+                    <div class=" cunstomer content__brand-1">
+                        <img src="./img/customer-logo-1.png" alt="">
+                    </div>
+                    <div class=" cunstomer content__brand-2">
+                        <img src="./img/customer-logo-2.png" alt="">
+                    </div>
+                    <div class=" cunstomer content__brand-3">
+                        <img src="./img/customer-logo-3.png" alt="">
+                    </div>
+                    <div class=" cunstomer content__brand-4">
+                        <img src="./img/customer-logo-4.png" alt="">
+                    </div>
+                    <div class=" cunstomer content__brand-5">
+                        <img src="./img/customer-logo-5.png" alt="">
+                    </div>
+                </div>
+            
+                <div class="content__introduct">
+                    <div class="content__introduct-img">
+                        <img src="./img/introduction.jpg" alt="">
+                    </div>
+                    <div class="content__introduct-des">
+                        <h2>Kora is here to help you <br>grow your online shop</h2>
+                        <span>We believe in sustainable and trustful ecommerce which<br> offers opportunities for both shop owners
+                            and customers.<br> Our
+                            entire experience and passion can be found in Kora<br> and you are invited to use it for your
+                            business</span>
+                        <a href="">Sign up</a>
+                    </div>
+                </div>
+            </div>
+            <!-- ************CONTENT PRODUCTS************************************************************************* -->
+            
+            <div id="features" class="content__products">
+                <div class="content__products-title">
+                    <h2>Check out all the features</h2>
+                    <span>The features built into Kora were designed to help online shop owners<br> present their merchandise and
+                        find more customers</span>
+                </div>
+                <div class="card">
+                    <div class="content__products-card">
+                        <div class="headphone">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="title">
+                            <span>Product Marketing On <br>Social Platforms</span>
+                        </div>
+                        <div class="des">
+                            <span>Besides regular product display options Kora has multiple functions for social networks
+                                integration</span>
+                        </div>
+                        <div class="learn-btn">
+                            <a href="">Learn more</a>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="content__products-card">
+                        <div class="headphone">
+                            <i class="far fa-clipboard"></i>
+                        </div>
+                        <div class="title">
+                            <span>Product Marketing On<br> Social Platforms</span>
+                        </div>
+                        <div class="des">
+                            <span>Besides regular product display options Kora has multiple functions for social networks
+                                integration</span>
+                        </div>
+                        <div class="learn-btn">
+                            <a href="">Learn more</a>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="content__products-card">
+                        <div class="headphone">
+                            <i class="far fa-comments"></i>
+                        </div>
+                        <div class="title">
+                            <span>Product Marketing On<br> Social Platforms</span>
+                        </div>
+                        <div class="des">
+                            <span>Besides regular product display options Kora has multiple functions for social networks
+                                integration</span>
+                        </div>
+                        <div class="learn-btn">
+                            <a href="">Learn more</a>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---------------------------MAIN STEP --------------------------- -->
+            <div id="details" class="main__step">
+                <div class="main__step-title">
+                    <span>
+                        Start a successful ecommmerce business<br> in no more than 3 easy steps with Kora
+                    </span>
+                    <p>To build a solid foundation for your online shop you need a strong brand and a bulletproof<br> strategy. You can rely on our
+                    experience to create a beautiful and efficient online shop that<br> offers benefits for both the shop brand and loyal
+                    customers</p>
+                </div>
+                <div class="main__step-step">
+                    <div class="step-img">
+                        <img src="./img/details-1.png" alt="">
+                    </div>
+                    <div class="step-content">
+                        <button href="">Step 1</button>
+                        <span>Figure out what to sell</span>
+                        <p>Delivering powerful brands for popular shops while<br> creating beautiful concepts and evocative logos. Use the<br> opportunity
+                        to prepare complete style guides</p>
+                        <a href="">Lightbox</a>
+                    </div>
+                </div>
 
+                <div class="main__step-step">
+                    <div class="step-content">
+                        <button href="">Step 2</button>
+                        <span>Figure out what to sell</span>
+                        <p>Delivering powerful brands for popular shops while<br> creating beautiful concepts and evocative logos. Use
+                            the<br> opportunity
+                            to prepare complete style guides</p>
+                        <a href="">Lightbox</a>
+                    </div>
+                    <div class="step-img">
+                        <img src="./img/details-2.png" alt="">
+                    </div>
+                    
+                </div>
+
+                <div class="main__step-step">
+                    <div class="step-img">
+                        <img src="https://inovatik.com/kora/images/details-3.png" alt="">
+                    </div>
+                    <div class="step-content">
+                        <button href="">Step 3</button>
+                        <span>Figure out what to sell</span>
+                        <p>Delivering powerful brands for popular shops while<br> creating beautiful concepts and evocative logos. Use
+                            the<br> opportunity
+                            to prepare complete style guides</p>
+                        <a href="">Sign up now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer style="margin-bottom: 400px" id="contact" class="footer">
+        <div class="about">
+            About Kora<span></span>
+            <p>Kora is a SaaS app website Bootstrap HTML template <br> packed with features like logo slider, details lightbox, <br> testimonial
+            slider dropdown
+            </p>
+        </div>
+        <div class="links">
+            <span>Links</span>
+            <p>Important: Terms & Conditions, Privacy Policy <br>
+            Useful: Colorpicker, Icon Library, Illustrations <br>
+            Menu: Home, Intro, Features, Details</p>
+        </div>
+        <div class="contact">
+            <div class="links">
+                <div class="facebook">
+                    <i class="link fab fa-facebook-f"></i>
+                </div>
+                <div class="ins">
+                    <i class="link fab fa-instagram"></i>
+                </div>
+                <div class="tw">
+                    <i class="link fab fa-twitter"></i>
+                </div>
+            </div>
+            <p>We would love to hear from you <br> <b>contact@site.com </b></p>
+        </div>
+    </footer>
 </div>
-<script src="./js.js"></script>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script >
+    $(document).ready(function() {
+        function start() {
+            addClassFixed()
+            scrollMenu()
+        }
+        start();
+// SRART FUNCTION ADD CLASS FIXED
+        function addClassFixed() {
+            $(document).scroll(function() {
+                if($('body, html').scrollTop() > $('header').height() ) {
+                    $('header').addClass('navbar__fixed ')
+                    $('.navbar').css({padding: "15px 207px"})
 
+                }
+                else {
+                    $('header').removeClass('navbar__fixed ')
+                    $('.navbar').css({ paddingTop: "20px" })
+                }
+            })
+
+        }
+// START FUNCTION SCROLL
+        function scrollMenu() {
+            $('.link').each(function(link) {
+                $(this).click(function(e) {
+                    e.preventDefault();
+                    id = $(this).text().toLocaleLowerCase();
+                    positionElement = $(`#${id}`).offset().top
+                  
+                    $('body, html').animate({scrollTop: positionElement },700)
+                       if (id == 'home') {
+                        $('body, html').animate({ scrollTop: 0 }, 700)
+                    }
+                   
+                })
+            })
+        }
+
+})
+</script>
 </html>
